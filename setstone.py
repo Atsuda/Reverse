@@ -64,4 +64,10 @@ class Setstone():
 		#連続する相手の石の次が自分の石であるかの判定
 		for num in Setstone.next_stone_vector_option:
 			for vecnum in range(1,len(Setstone.vector_list[num])):
-				print vecnum
+				if Setstone.vector_list[num][vecnum]==playernum*(-1):
+					pass
+				elif Setstone.vector_list[num][vecnum]==playernum:
+					print num,vecnum
+					break
+				else:
+					break
