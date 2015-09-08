@@ -14,7 +14,7 @@ class Board(setstone.Setstone):
 			, [2, 0, 0, 0, 0, 0, 0, 0, 0, 2]
 			, [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]]
 
-	# TODO boardの表示
+	# TODO boardの表示。文字コードがよく分からない。1,-1を○とか●にしたい。
 	def print_board(self):
 		for num in range(0,10):
 			print self.board[num]

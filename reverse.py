@@ -3,7 +3,7 @@ import board
 
 playernum = 1
 game1=board.Board()
-row = 4
+row = 3
 column =4
 game1.zero_stone(row,column)
 game1.get_vector(row,column)
@@ -15,3 +15,5 @@ for num in game1.next_stone_vector_option:
 	print game1.vector_list[num]
 game1.can_reverse_stone(playernum)
 print game1.can_reverse_stone_optionAndCount
+game1.reverse_stone(playernum,row,column)
+game1.print_board()

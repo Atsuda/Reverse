@@ -25,7 +25,14 @@ class Setstone():
 	can_reverse_stone_optionAndCount = [] # can_reverse_stoneメソッドで取得するリストの入れ物。vector_optionと何個目の石まで処理するかのリストをネスト
 	def input_row(self):
 		#石を置く行の入力
-		self.row = raw_input('行をして指定してください')
+		row = raw_input('1～8で行をして指定')
+		row = int(row)
+		return row
+	def input_column(self):
+		#石を置く列の入力
+		column = raw_input('1～8で列をして指定')
+		column = int(column)
+		return column
 	def zero_stone(self,row,column):
 		#石が置いてあるか判定
 		if self.board[row][column] == 0:
@@ -34,7 +41,6 @@ class Setstone():
 			print 'er1'
 	def get_vector(self,row,column):
 		#指定した座標からボード端までのベクトルを取得(指定した座標は除く)
-		#TODO plyernum修正
 		for num in range(1,9):
 			temprow=row
 			tempcol=column
@@ -65,4 +71,19 @@ class Setstone():
 					break
 		if Setstone.can_reverse_stone_optionAndCount == []:
 			print 'er3'
-
+	def reverse_stone(self,playernum,row,column):
+		#石の反転処理
+		for num in range(len(Setstone.can_reverse_stone_optionAndCount)):
+			vecop = (Setstone.can_reverse_stone_optionAndCount[num][0])
+			reverseCount = Setstone.can_reverse_stone_optionAndCount[num][1]
+			temprow=row
+			tempcol=column
+			for num2 in range(reverseCount):
+				del self.board[temprow][tempcol]
+				self.board[temprow].insert(tempcol,playernum)
+				temprow = temprow+Setstone.vector_option[vecop][1]
+				tempcol = tempcol+Setstone.vector_option[vecop][0]
+	def set_stone(self,playernum):
+		Setstone.input_row()
+		Setstone.input_column()
+		zero_stone(row,column)
