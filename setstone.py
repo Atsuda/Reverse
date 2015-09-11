@@ -2,6 +2,7 @@
 class Setstone():
 	# 指定した座標を中心とした8方向のベクトル
 	# 単位ベクトルをオプションとして、繰り返し処理に使用する。
+
 	right_vecop = [0, 1]
 	rightUp_vecop = [-1, 1]
 	Up_vecop = [-1, 0]
@@ -27,7 +28,7 @@ class Setstone():
 	# can_reverse_stoneメソッドで取得するリストの入れ物。vector_optionと何個目の石まで処理するかのリストをネスト
 	can_reverse_stone_optionAndCount = []
 
-	def zero_stone(self, row, column):
+	def null_stone(self, row, column):
 		# 石が置いてあるか判定
 		if self.board[row][column] == 0:
 			pass
@@ -83,7 +84,7 @@ class Setstone():
 				tempcol = tempcol + Setstone.vector_option[vecop][1]
 
 	def set_stone(self,playernum,row,column):
-		Setstone.zero_stone(self,row,column)
+		Setstone.null_stone(self, row,column)
 		Setstone.get_vector(self,row,column)
 		Setstone.next_stone(self,playernum)
 		Setstone.can_reverse_stone(self, playernum)

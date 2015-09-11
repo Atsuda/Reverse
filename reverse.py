@@ -5,7 +5,7 @@ playernum = 1
 game1=board.Board()
 row = 3
 column =4
-game1.zero_stone(row,column)
+game1.null_stone(row, column)
 game1.get_vector(row,column)
 game1.print_board()
 print(game1.right_vec)
