@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-import setstone
-
-class Board(setstone.Setstone):
+class Board(object):
 	def __init__(self):
 		self.board = [[2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
 			, [2, 0, 0, 0, 0, 0, 0, 0, 0, 2]
