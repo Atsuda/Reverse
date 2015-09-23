@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-class Board(object):
+class Board():
 	def __init__(self):
 		self.playboard = [[2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
 			, [2, 0, 0, 0, 0, 0, 0, 0, 0, 2]

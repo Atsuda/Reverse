@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import copy
 class Setstone():
 	#石を置くために必要な処理をまとめたクラス
 
@@ -32,8 +33,8 @@ class Setstone():
 		self.can_reverse_stone_optionAndCount = []
 
 	def get_board(self,playboard):
-		#playbaord変数を受け取る
-		self.playboard = playboard
+		#playbaord変数を受け取るdeepcopy。これは、self.playboard = playboard だと、self.playboard.append()等を行った際に、参照先のplayboardまで変更してしまうため。
+		self.playboard = copy.deepcopy(playboard)
 
 	def null_stone(self, row, column):
 		# 石が置いてあるか判定
@@ -41,6 +42,7 @@ class Setstone():
 			return True
 		else:
 			print 'er1'
+			print self.playboard
 			return False
 
 	def get_vector(self, row, column):
@@ -97,9 +99,9 @@ class Setstone():
 				temprow = temprow + Setstone.vector_option[vecop][0]
 				tempcol = tempcol + Setstone.vector_option[vecop][1]
 
-	def can_set_stone(self,playernum,playboard,row,column):
-		#指定した座標に、石が置けるかの判定
+	def can_set_stone(self,playboard,playernum,row,column):
 		Setstone.get_board(self,playboard)
+		#指定した座標に、石が置けるかの判定
 		if Setstone.null_stone(self, row,column):
 			Setstone.get_vector(self,row,column)
 			if Setstone.next_stone(self,playernum):
@@ -107,7 +109,7 @@ class Setstone():
 					print 'ishigaokemasu'
 					return True
 
-	def set_stone(self,playernum,playboard,row,column):
+	def set_stone(self,playboard,playernum,row,column):
 		Setstone.get_board(self,playboard)
 		if Setstone.null_stone(self, row,column):
 			Setstone.get_vector(self,row,column)

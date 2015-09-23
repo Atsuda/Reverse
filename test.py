@@ -8,7 +8,7 @@ column = 4
 
 game1.playboard
 turn1 = setstone.Setstone()
-turn1.set_stone(playernum,game1.playboard,row,column)
-game1.playboard
+turn1.get_board(game1.playboard)
+turn1.playboard.append(1)
 
-print "finsh"
+print 'A'
