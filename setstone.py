@@ -15,7 +15,7 @@ class Setstone():
 	vector_option = {1: right_vecop, 2: rightUp_vecop, 3: Up_vecop, 4: leftUp_vecop \
 		, 5: left_vecop, 6: leftDown_vecop, 7: down_vecop, 8: rightDown_vecop}
 	def __init__(self):
-		#指定した座標を中心とした8方向のベクトル
+		#指定した座標を中心とした8方向のベクトルの入れ物
 		self.right_vec = []
 		self.rightUp_vec = []
 		self.Up_vec = []

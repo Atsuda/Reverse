@@ -15,4 +15,5 @@ class Board(object):
 	# TODO boardの表示。文字コードがよく分からない。1,-1を○とか●にしたい。
 	def print_board(self):
 		for num in range(0,10):
-			print self.board[num]
+			for num2 in range(0,10):
+				print self.board[num][num2]
