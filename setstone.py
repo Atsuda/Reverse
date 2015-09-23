@@ -31,13 +31,13 @@ class Setstone():
 		# can_reverse_stoneメソッドで取得するリストの入れ物。vector_optionと何個目の石まで処理するかのリストをネスト
 		self.can_reverse_stone_optionAndCount = []
 
-	def get_board(self,board):
-		#baord変数を受け取る
-		self.board = board
+	def get_board(self,playboard):
+		#playbaord変数を受け取る
+		self.playboard = playboard
 
 	def null_stone(self, row, column):
 		# 石が置いてあるか判定
-		if self.board[row][column] == 0:
+		if self.playboard[row][column] == 0:
 			return True
 		else:
 			print 'er1'
@@ -48,8 +48,8 @@ class Setstone():
 		for num in range(1, 9):
 			temprow = row
 			tempcol = column
-			while self.board[temprow][tempcol] != 2:
-				self.vector_list[num].append(self.board[temprow][tempcol])
+			while self.playboard[temprow][tempcol] != 2:
+				self.vector_list[num].append(self.playboard[temprow][tempcol])
 				temprow = temprow + Setstone.vector_option[num][0]
 				tempcol = tempcol + Setstone.vector_option[num][1]
 			self.vector_list[num].append(2)
@@ -92,13 +92,23 @@ class Setstone():
 			temprow = row
 			tempcol = column
 			for num2 in range(reverseCount):
-				del self.board[temprow][tempcol]
-				self.board[temprow].insert(tempcol, playernum)
+				del self.playboard[temprow][tempcol]
+				self.playboard[temprow].insert(tempcol, playernum)
 				temprow = temprow + Setstone.vector_option[vecop][0]
 				tempcol = tempcol + Setstone.vector_option[vecop][1]
 
-	def set_stone(self,playernum,board,row,column):
-		Setstone.get_board(self,board)
+	def can_set_stone(self,playernum,playboard,row,column):
+		#指定した座標に、石が置けるかの判定
+		Setstone.get_board(self,playboard)
+		if Setstone.null_stone(self, row,column):
+			Setstone.get_vector(self,row,column)
+			if Setstone.next_stone(self,playernum):
+				if Setstone.can_reverse_stone(self, playernum):
+					print 'ishigaokemasu'
+					return True
+
+	def set_stone(self,playernum,playboard,row,column):
+		Setstone.get_board(self,playboard)
 		if Setstone.null_stone(self, row,column):
 			Setstone.get_vector(self,row,column)
 			if Setstone.next_stone(self,playernum):

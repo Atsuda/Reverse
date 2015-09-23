@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 class Board(object):
 	def __init__(self):
-		self.board = [[2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+		self.playboard = [[2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
 			, [2, 0, 0, 0, 0, 0, 0, 0, 0, 2]
 			, [2, 0, 0, 0, 0, 0, 0, 0, 0, 2]
 			, [2, 0, 0, 0, 0, 0,1, 0, 0, 2]
@@ -16,4 +16,4 @@ class Board(object):
 	def print_board(self):
 		for num in range(0,10):
 			for num2 in range(0,10):
-				print self.board[num][num2]
+				print self.playboard[num][num2]
