@@ -38,9 +38,10 @@ class Setstone():
 	def null_stone(self, row, column):
 		# 石が置いてあるか判定
 		if self.board[row][column] == 0:
-			pass
+			return True
 		else:
 			print 'er1'
+			return False
 
 	def get_vector(self, row, column):
 		# 指定した座標からボード端までのベクトルを取得(指定した座標は除く)
@@ -62,6 +63,9 @@ class Setstone():
 				pass
 		if self.next_stone_vector_list == []:
 			print 'er2'
+			return False
+		else:
+			return True
 
 	def can_reverse_stone(self, playernum):
 		# 連続する相手の石の次が自分の石であるかの判定
@@ -76,6 +80,9 @@ class Setstone():
 					break
 		if self.can_reverse_stone_optionAndCount == []:
 			print 'er3'
+			return False
+		else:
+			return True
 
 	def reverse_stone(self, playernum, row, column):
 		# 石の反転処理
@@ -92,8 +99,8 @@ class Setstone():
 
 	def set_stone(self,playernum,board,row,column):
 		Setstone.get_board(self,board)
-		Setstone.null_stone(self, row,column)
-		Setstone.get_vector(self,row,column)
-		Setstone.next_stone(self,playernum)
-		Setstone.can_reverse_stone(self, playernum)
-		Setstone.reverse_stone(self, playernum, row, column)
+		if Setstone.null_stone(self, row,column):
+			Setstone.get_vector(self,row,column)
+			if Setstone.next_stone(self,playernum):
+				if Setstone.can_reverse_stone(self, playernum):
+					Setstone.reverse_stone(self, playernum, row, column)
