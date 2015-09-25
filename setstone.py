@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import copy
+from copy import deepcopy
 class Setstone():
 	#石を置くために必要な処理をまとめたクラス
 
@@ -34,7 +34,7 @@ class Setstone():
 
 	def get_board(self,playboard):
 		#playbaord変数を受け取るdeepcopy。これは、self.playboard = playboard だと、self.playboard.append()等を行った際に、参照先のplayboardまで変更してしまうため。
-		self.playboard = copy.deepcopy(playboard)
+		self.playboard = deepcopy(playboard)
 
 	def null_stone(self, row, column):
 		# 石が置いてあるか判定
@@ -42,7 +42,6 @@ class Setstone():
 			return True
 		else:
 			print 'er1'
-			print self.playboard
 			return False
 
 	def get_vector(self, row, column):
@@ -110,9 +109,7 @@ class Setstone():
 					return True
 
 	def set_stone(self,playboard,playernum,row,column):
-		Setstone.get_board(self,playboard)
-		if Setstone.null_stone(self, row,column):
-			Setstone.get_vector(self,row,column)
-			if Setstone.next_stone(self,playernum):
-				if Setstone.can_reverse_stone(self, playernum):
-					Setstone.reverse_stone(self, playernum, row, column)
+		#Setstoneクラスで持っている、playboardの一連の処理
+		if Setstone.can_set_stone(self,playboard,playernum,row,column):
+			Setstone.reverse_stone(self, playernum, row, column)
+			print 'ishiwookimasita'
