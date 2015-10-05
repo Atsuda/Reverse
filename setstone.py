@@ -32,6 +32,7 @@ class Setstone():
 		# can_reverse_stoneメソッドで取得するリストの入れ物。vector_optionと何個目の石まで処理するかのリストをネスト
 		self.can_reverse_stone_optionAndCount = []
 
+
 	def get_board(self,playboard):
 		#playbaord変数を受け取るdeepcopy。これは、self.playboard = playboard だと、self.playboard.append()等を行った際に、参照先のplayboardまで変更してしまうため。
 		self.playboard = deepcopy(playboard)
@@ -41,7 +42,6 @@ class Setstone():
 		if self.playboard[row][column] == 0:
 			return True
 		else:
-			print 'er1'
 			return False
 
 	def get_vector(self, row, column):
@@ -63,7 +63,6 @@ class Setstone():
 			else:
 				pass
 		if self.next_stone_vector_list == []:
-			print 'er2'
 			return False
 		else:
 			return True
@@ -80,7 +79,6 @@ class Setstone():
 				else:
 					break
 		if self.can_reverse_stone_optionAndCount == []:
-			print 'er3'
 			return False
 		else:
 			return True
@@ -105,11 +103,41 @@ class Setstone():
 			Setstone.get_vector(self,row,column)
 			if Setstone.next_stone(self,playernum):
 				if Setstone.can_reverse_stone(self, playernum):
-					print 'ishigaokemasu'
 					return True
+
+	def can_set_stone_all_point(self,playboard,playernum):
+		#1箇所以上石を置けるか判定
+		a = False
+		for row in range(1,9):
+			for column in range(1,9):
+				temp = Setstone()
+				if temp.can_set_stone(playboard,playernum,row,column):
+					a = True
+		if a:
+			print "player%d can set a stone on the board"%(playernum)
+			return True
+		else :
+			print "you cant set a stone anywhere on the board"
+			return False
 
 	def set_stone(self,playboard,playernum,row,column):
 		#Setstoneクラスで持っている、playboardの一連の処理
 		if Setstone.can_set_stone(self,playboard,playernum,row,column):
 			Setstone.reverse_stone(self, playernum, row, column)
-			print 'ishiwookimasita'
+
+	def set_stone_for_manual(self,playboard,playernum):
+		Setstone.get_board(self,playboard)
+		#manualplayer向けのset_stone
+		row = int(raw_input("input row"))
+		column = int(raw_input("input column"))
+		if Setstone.null_stone(self, row,column):
+			Setstone.get_vector(self,row,column)
+			if Setstone.next_stone(self,playernum):
+				if Setstone.can_reverse_stone(self, playernum):
+					Setstone.reverse_stone(self,playernum,row,column)
+				else:
+					print "hasamemasen"
+			else:
+				print "tonari ni aite no ishi ga arimasen"
+		else:
+			"the point you've choised is already stone setted"

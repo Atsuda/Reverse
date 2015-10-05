@@ -62,7 +62,6 @@ class Tactics():
 			self.minimax_list[num] = {"predict_list_id":self.child_max_n_list[num]["predict_list_id"],"stone1_count":self.child_max_n_list[num]["stone1_count"]*(-1)}
 			#stone1_countに-1をかけたものを、child_max_listに入れる
 		n=n-1
-		print self.minimax_list
 
 		while n >= 1:
 			temp_minimax_list = {}
@@ -80,23 +79,20 @@ class Tactics():
 			self.minimax_list = {}
 			for num in temp_minimax_list.keys():
 				self.minimax_list[num] ={"predict_list_id":temp_minimax_list[num]["predict_list_id"],"stone1_count":temp_minimax_list[num]["stone1_count"]*(-1)}
-			print(self.minimax_list)
 			n=n-1
 		temp_predict_list_id = self.minimax_list[-1]["predict_list_id"]
 		global row
 		global column
 		row = self.predict_list[1][temp_predict_list_id]["row"]
 		column = self.predict_list[1][temp_predict_list_id]["column"]
-		print row
-		print column
+		print "row:%d"%(row)
+		print "column:%d"%(column)
 		return row,column
 
 def run_minimax_set_stone(playernum,playboard):
 	pre = Tactics()
 	pre.predict_n(playernum,playboard)
 	pre.minimax_n()
-	turn = setstone.Setstone()
-	turn.set_stone(playboard,playernum,row,column)
-	global predict_result_playboard
-	predict_result_playboard = deepcopy(turn.playboard)
-	return predict_result_playboard
+	temp_turn = setstone.Setstone()
+	temp_turn.set_stone(playboard,playernum,row,column)
+	return temp_turn.playboard
